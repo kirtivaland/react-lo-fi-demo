@@ -1,24 +1,24 @@
 import React from 'react';
-import logo from './logo.svg';
+import { Container, Row, Col } from "react-bootstrap";
+
 import './App.css';
+
+import Header from './components/collections/header/index';
+import SaveCard from './views/SaveCard'; 
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container-md lo-fi-demo">
+      <Header />
+      <main className="main">
+        <Container>
+          <Row>
+            <Col xs={12} lg={12} md={9} sm={12}>
+              <SaveCard />
+            </Col>
+          </Row>
+        </Container>
+      </main>
     </div>
   );
 }
