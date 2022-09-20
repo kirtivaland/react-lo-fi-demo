@@ -79,7 +79,10 @@ const RegisterCard= () => {
         if (expiryError.isValid && cardNumberError.isValid) {
             //console.log("validation passed");
             const saveResponse = await saveCardDetails(cardValues);
-            console.log("cardValues:", cardValues);
+            //console.log("cardValues:", cardValues);
+            console.log("Card Number:", cardValues.ccNumber);
+            console.log("CVV:", cardValues.cvcNumber);
+            console.log("Expiry Date:", cardValues.expiryDate);
             if (!saveResponse) {
                 setFormSubmitError(true);
             } else {
