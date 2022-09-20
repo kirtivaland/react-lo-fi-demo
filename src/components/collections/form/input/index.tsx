@@ -17,7 +17,7 @@ type FormInputProps = {
 
 const FormInput = (props: FormInputProps) => {
     return ( !props ? <></> :
-        <div className=" mb-3">
+        <div className="input-fields">
             <FloatingLabel controlId={props.controlID} label={props.label} className="mb-3">
                 <Form.Control required={props.required} type={props.type} name={props.name} onChange={props.changeHandler} placeholder={props.placeHolder} maxLength={props.maxLength} pattern={props.pattern} />
                 {props.textMuted && <Form.Text className="text-muted">{props.textMuted}</Form.Text>}

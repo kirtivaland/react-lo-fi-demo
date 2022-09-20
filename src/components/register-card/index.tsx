@@ -57,6 +57,7 @@ const RegisterCard= () => {
                   console.log(JSON.stringify(saveResponse, null, 4));
                   return true;
             } catch (error) {
+                setFormSubmitError(true);
                 return false;
             }
         }
@@ -80,11 +81,9 @@ const RegisterCard= () => {
             console.log("Card Number:", ccNumber);
             console.log("CVV:", cvcNumber);
             console.log("Expiry Date:", expiryDate);
-            if (!saveResponse) {
-                setFormSubmitError(true);
-            } else {
+            if (saveResponse) {
                 setSuccess(true);
-            }
+            } 
          } 
     };
 
@@ -94,8 +93,8 @@ const RegisterCard= () => {
             <div className="form-header">
                 <h2 className="header">Welcome {userInfo.firstName}</h2>
             </div>
-            <form onSubmit={(e) => handleSubmit(e)} className="mb-3">
-                <Row className="mb-3">
+            <form onSubmit={(e) => handleSubmit(e)} className="register-card">
+                <Row className="form-fields">
                     {!cardNumberError.isValid && (
                         <Alert  variant="danger" onClose={() => setCardNumberError({message: "", isValid:true})} dismissible>
                             {cardNumberError.message}
@@ -116,10 +115,10 @@ const RegisterCard= () => {
                             Card details save successfully!
                         </Alert>
                     )}
-                    <Form.Group as={Col} controlId="formCCNumber">
+                    <Form.Group controlId="formCCNumber">
                         <FormInput required={true} type={"text"} label={"Credit card number"} name={"ccNumber"} value={cardValues.ccNumber} changeHandler={inputHandleChange} placeHolder={"Credit card number"} maxLength={16} pattern="([0-9]{16}?)" />
                     </Form.Group>
-                    <Row className="mb-3">
+                    <Row className="group">
                         <Form.Group as={Col} controlId="formCVCNumber">
                             <FormInput required={true} type={"text"} label={"CVC"} name={"cvcNumber"} value={cardValues.cvcNumber} changeHandler={inputHandleChange} placeHolder={"CVC"} maxLength={3} pattern="([0-9]{3}?)" />
                         </Form.Group>
@@ -129,7 +128,7 @@ const RegisterCard= () => {
                         </Form.Group>
                     </Row>
                     <Row className="mb-3">
-                        <div className="mb-3 col text-center">
+                        <div className="text-center">
                             <Button type={"submit"} variant={"primary"} size="lg">Submit</Button>
                         </div>
                     </Row>
