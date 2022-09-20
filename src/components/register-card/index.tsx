@@ -65,32 +65,27 @@ const RegisterCard= () => {
     const handleSubmit = async (event : React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         
-        const { ccNumber, expiryDate } = cardValues;
+        const { ccNumber, cvcNumber, expiryDate } = cardValues;
         
         const isValidExpiryRes = validateExpiryDate(expiryDate);
         setCardExpiryError(isValidExpiryRes);
-        //console.log("isValidExpiryRes: ",isValidExpiryRes);
-        //console.log("expiryError:", expiryError);
 
         const isValidCardRes = validateCardNumber(ccNumber.toString());
         setCardNumberError(isValidCardRes);
-        //console.log("isValidCardRes: ",isValidCardRes);
 
         if (expiryError.isValid && cardNumberError.isValid) {
             //console.log("validation passed");
             const saveResponse = await saveCardDetails(cardValues);
             //console.log("cardValues:", cardValues);
-            console.log("Card Number:", cardValues.ccNumber);
-            console.log("CVV:", cardValues.cvcNumber);
-            console.log("Expiry Date:", cardValues.expiryDate);
+            console.log("Card Number:", ccNumber);
+            console.log("CVV:", cvcNumber);
+            console.log("Expiry Date:", expiryDate);
             if (!saveResponse) {
                 setFormSubmitError(true);
             } else {
                 setSuccess(true);
             }
          } 
-        
-        
     };
 
     return (

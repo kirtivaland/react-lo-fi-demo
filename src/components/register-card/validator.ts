@@ -7,6 +7,7 @@ export const isExpiryYearInRange = (expiryYear: number) => {
     const yearRange = currentYear + 5; //add 5 years for projected expiry years
     return (expiryYear >= currentYear && expiryYear <= yearRange) ? true : false;
 };
+
 export const validateCardNumber = (cardNumber: string) => {
     const regex = new RegExp("^[0-9]{15,16}$");
     let formErrors = {
@@ -47,6 +48,7 @@ export const luhnCheck = (cardVal: string) => {
     
     return (sum % 10) === 0;
 }
+
 export const validateExpiryDate = (expiryInput: string) => {
     const expMonth = parseInt(expiryInput.slice(0, 2));
     const expYear = parseInt(expiryInput.slice(-2));
